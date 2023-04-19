@@ -112,6 +112,56 @@ public class ProductDao {
 		
 	}
 	// 최소가격 최대가격을 전달받아서 해당 가격범위 포함된 상품정보 반환기능
+	public List<Product> getProductByMinMaxPrice (int minPrice, int maxPrice) throws SQLException {
+		String sql = "select product_no, product_name, product_maker, product_price, product_discount_rate, product_stock, product_create_date "
+				+ "from sample_product "
+				+ "where product_price between ? and ?";
+		List<Product> produts = new ArrayList<>();
+		
+		Connection con = ConnUtils.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, minPrice);
+		pstmt.setInt(2, maxPrice);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			Product product = new Product();
+			int no = rs.getInt("product_no");
+			String name = rs.getString("product_name");
+			String maker = rs.getString("product_maker");
+			int price = rs.getInt("product_price");
+			double discountRate = rs.getDouble("product_discount_rate");
+			int stock = rs.getInt("product_stock");
+			Date createDate = rs.getDate("product_create_date");
+			
+			product.setNo(no);
+			product.setName(name);
+			product.setMaker(maker);
+			product.setPrice(price);
+			product.setDiscountRate(discountRate);
+			product.setStock(stock);
+			product.setCreateDate(createDate);
+			
+			produts.add(product);
+		}
+		
+		con.close();
+		pstmt.close();
+		rs.close();
+		
+		return produts;
+	}
+	
 	// 상품번호를 전달받아서 상품정보를 삭제하는 기능
+	public void deleteProdutByNo(int no) throws SQLException {
+		String sql = "delete from sample_product "
+				+ "where product_no = ?";
+		Connection con = ConnUtils.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, no);
+		pstmt.executeUpdate();
+		
+		
+	}
 
 }
