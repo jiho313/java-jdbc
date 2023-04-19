@@ -68,9 +68,9 @@ public class ProductApp {
 		System.out.println("### 조회할 상품 번호를 입력하세요.");
 		
 		System.out.print("상품번호: ");
-		int productNo = reader.readInt();
+		int no = reader.readInt();
 		
-		Product product = dao.getProductByProductNo(productNo);
+		Product product = dao.getProductByProductNo(no);
 		if(product == null) {
 			System.out.println("### 등록된 상품정보가 존재하지 않습니다.");
 		} else {

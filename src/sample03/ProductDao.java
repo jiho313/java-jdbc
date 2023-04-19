@@ -79,7 +79,6 @@ public class ProductDao {
 		String sql = "select product_no, product_name, product_maker, product_price, product_discount_rate, product_stock, product_create_date "
 				+ "from sample_product "
 				+ "where product_no = ?";
-		
 		Product product = null;
 		
 		Connection con = ConnUtils.getConnection();
@@ -109,7 +108,7 @@ public class ProductDao {
 		pstmt.close();
 		rs.close();
 		
-		return null;
+		return product;
 		
 	}
 	// 최소가격 최대가격을 전달받아서 해당 가격범위 포함된 상품정보 반환기능

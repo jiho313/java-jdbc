@@ -51,16 +51,14 @@ public class ScoreApp {
 		System.out.println("학번\t이름\t국어\t영어\t수학\t총점\t평균");
 	
 		for (Score score : scores) {
-			int totalScore = score.getKor() + score.getEng() + score.getMath();
-			int average = totalScore/3;
 			
 			System.out.print(score.getStudentNo() + "\t");
 			System.out.print(score.getStudentName() + "\t");
 			System.out.print(score.getKor() + "\t");
 			System.out.print(score.getEng() + "\t");
 			System.out.print(score.getMath() + "\t");
-			System.out.print(totalScore + "\t");
-			System.out.println(average);
+			System.out.print(score.getTotalScore() + "\t");
+			System.out.println(score.getAverage());
 		}
 		System.out.println("----------------------------------------------------");
 	}
