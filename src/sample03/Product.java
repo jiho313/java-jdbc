@@ -69,6 +69,16 @@ public class Product {
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
+	
+	// 할인된 가격
+	public int getDiscountPrice() {
+		return (int) (price*(1-discountRate));
+	}
+	
+	// 할인율을 퍼센트로 전환
+	public String getDiscountPerCent() {
+		return (int) (discountRate*100) + "%";
+	}
 
 	
 	

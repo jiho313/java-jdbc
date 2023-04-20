@@ -13,7 +13,7 @@ public class ScoreApp {
 	public void menu() {
 		System.out.println("### 성적관리 프로그램 ###");
 		System.out.println("----------------------------------------");
-		System.out.println("1.전체조회 2.조회 3.저장 0.종료");
+		System.out.println("1.전체조회 2.조회 3.저장 4.성적삭제 0.종료");
 		System.out.println("----------------------------------------");
 		System.out.println();
 		
@@ -28,6 +28,8 @@ public class ScoreApp {
 				조회();
 			} else if (menuNo == 3) {
 				저장();
+			} else if (menuNo == 4) {
+				성적삭제();
 			} else if (menuNo == 0) {
 				종료();
 			}
@@ -41,6 +43,8 @@ public class ScoreApp {
 		menu();	// 재귀함수
 		
 	}
+	
+
 	
 	private void 전체조회() throws SQLException {
 		System.out.println("<< 전체 성적정보 조회 >>");
@@ -112,6 +116,19 @@ public class ScoreApp {
 		dao.insertScore(score);
 		
 		System.out.println("### 신규 성적정보가 저장되었습니다.");
+		
+	}
+	
+	private void 성적삭제() throws SQLException {
+		System.out.println("<< 성적 정보 삭제 >>");
+		System.out.println("### 삭제할 성적 번호를 입력하세요.");
+		
+		System.out.print("성적 번호 입력: ");
+		int no = reader.readInt();
+		
+		dao.deleteScore(no);
+		
+		System.out.println("["+no+"]번의 성적 정보 삭제가 완료되었습니다.");
 		
 	}
 	private void 종료() {

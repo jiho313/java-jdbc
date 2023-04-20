@@ -124,8 +124,15 @@ public class ScoreDao {
 	/**
 	 * 전달받은 학생의 성적정보를 sample_scores 테이블에서 삭제한다.
 	 * @param studentNo 학생번호
+	 * @throws SQLException 
 	 */
-	public void deleteScore(int studentNo) {
+	public void deleteScore(int studentNo) throws SQLException {
+		String sql = "delete from sample_scores "
+				+ "where student_no =?";
+		Connection con = ConnUtils.getConnection();
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, studentNo);
+		pstmt.executeUpdate();
 		
 	}
 	
